@@ -1,8 +1,15 @@
 <?php
 
+
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+
+use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\OrderController;
+
 use App\Http\Controllers\ProfileController;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +27,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::resource('article', ArticleController::class);
-Route::resource("category",CategoryController::class);
+Route::resource("category", CategoryController::class);
+
+
+
+Route::resource("product", ProductController::class);
+Route::resource("product-category", ProductCategory::class);
+
+
+Route::resource('order', OrderController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,4 +50,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
